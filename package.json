@@ -6,6 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
+    "watch": "tsc -w",
+    "nodemon": "nodemon dist/index.js",
     "start": "node dist"
   },
   "repository": {
@@ -20,7 +22,8 @@
   },
   "homepage": "https://github.com/FY0u11/design-patterns#readme",
   "devDependencies": {
-    "typescript": "^4.1.3"
+    "typescript": "^4.1.3",
+    "nodemon": "^2.0.7"
   },
   "dependencies": {
 
