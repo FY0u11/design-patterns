@@ -1,101 +1,110 @@
 interface IWindow {
-  render (): void
+    render (): void
 }
 
 interface IAlert {
-  call (): void
+    call (): void
 }
 
 interface ICreator {
-  createWindow (): IWindow
-  createAlert (): IAlert
+    createWindow (): IWindow
+
+    createAlert (): IAlert
 }
 
 class WindowsWindow implements IWindow {
-  render (): void {
-    console.log('This is windows window')
-  }
+    render (): void {
+        console.log('This is windows window')
+    }
 }
 
 class MacWindow implements IWindow {
-  render (): void {
-    console.log('This is mac window')
-  }
+    render (): void {
+        console.log('This is mac window')
+    }
 }
 
 class LinuxWindow implements IWindow {
-  render (): void {
-    console.log('This is linux window')
-  }
+    render (): void {
+        console.log('This is linux window')
+    }
 }
 
 class WindowsAlert implements IAlert {
-  call (): void {
-    console.log('This is windows Alert')
-  }
+    call (): void {
+        console.log('This is windows Alert')
+    }
 }
 
 class MacAlert implements IAlert {
-  call (): void {
-    console.log('This is mac Alert')
-  }
+    call (): void {
+        console.log('This is mac Alert')
+    }
 }
 
 class LinuxAlert implements IAlert {
-  call (): void {
-    console.log('This is linux Alert')
-  }
+    call (): void {
+        console.log('This is linux Alert')
+    }
 }
 
 class WindowsCreator implements ICreator {
-  createWindow (): WindowsWindow {
-    return new WindowsWindow()
-  }
+    createWindow (): WindowsWindow {
+        return new WindowsWindow()
+    }
 
-  createAlert (): WindowsAlert {
-    return new WindowsAlert()
-  }
+    createAlert (): WindowsAlert {
+        return new WindowsAlert()
+    }
 }
 
 class MacCreator implements ICreator {
-  createWindow (): MacWindow {
-    return new MacWindow()
-  }
+    createWindow (): MacWindow {
+        return new MacWindow()
+    }
 
-  createAlert (): MacAlert {
-    return new MacAlert()
-  }
+    createAlert (): MacAlert {
+        return new MacAlert()
+    }
 }
 
 class LinuxCreator implements ICreator {
-  createWindow (): LinuxWindow {
-    return new LinuxWindow()
-  }
+    createWindow (): LinuxWindow {
+        return new LinuxWindow()
+    }
 
-  createAlert (): LinuxAlert {
-    return new LinuxAlert()
-  }
+    createAlert (): LinuxAlert {
+        return new LinuxAlert()
+    }
 }
 
 type Platform = 'windows' | 'mac' | 'linux'
 
 export default class App {
-  private creator!: ICreator
-  constructor (private readonly platform: Platform) {}
+    private creator!: ICreator
 
-  init (): void {
-    switch (this.platform) {
-      case 'windows': this.creator = new WindowsCreator(); break
-      case 'mac': this.creator = new MacCreator(); break
-      case 'linux': this.creator = new LinuxCreator(); break
-      default: throw new Error('Such platform is not supported')
+    constructor (private readonly platform: Platform) {}
+
+    init (): void {
+        switch (this.platform) {
+            case 'windows':
+                this.creator = new WindowsCreator();
+                break
+            case 'mac':
+                this.creator = new MacCreator();
+                break
+            case 'linux':
+                this.creator = new LinuxCreator();
+                break
+            default:
+                throw new Error('Such platform is not supported')
+        }
     }
-  }
 
-  start (): void {
-    const window = this.creator.createWindow()
-    const alert = this.creator.createAlert()
-    window.render()
-    alert.call()
-  }
+    start (): void {
+        const window = this.creator.createWindow()
+        const alert = this.creator.createAlert()
+        window.render()
+        alert.call()
+    }
 }

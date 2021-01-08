@@ -5,7 +5,9 @@ enum States {
 
 interface Subject {
     subscribe (observer: Observer): void
+
     unsubscribe (observer: Observer): void
+
     notify (): void
 }
 
@@ -24,11 +26,11 @@ export class NetworkFilter implements Subject {
         this.notify()
     }
 
-    get state(): States {
+    get state (): States {
         return this._state;
     }
 
-    set state(value: States) {
+    set state (value: States) {
         this._state = value;
     }
 
@@ -52,8 +54,11 @@ export class Lamp implements Observer {
 
     public update (subject: NetworkFilter): void {
         switch (subject.state) {
-            case States.SWITCHOFF: console.log(`Lamp [${this.name}] is off`); break
-            case States.SWITCHON: console.log(`Lamp [${this.name}] is on`)
+            case States.SWITCHOFF:
+                console.log(`Lamp [${this.name}] is off`);
+                break
+            case States.SWITCHON:
+                console.log(`Lamp [${this.name}] is on`)
         }
     }
 }
@@ -65,8 +70,11 @@ export class Laptop implements Observer {
 
     public update (subject: NetworkFilter): void {
         switch (subject.state) {
-            case States.SWITCHOFF: console.log('Laptop is off'); break
-            case States.SWITCHON: console.log('Laptop is on')
+            case States.SWITCHOFF:
+                console.log('Laptop is off');
+                break
+            case States.SWITCHON:
+                console.log('Laptop is on')
         }
     }
 }
@@ -78,8 +86,11 @@ export class TV implements Observer {
 
     public update (subject: NetworkFilter): void {
         switch (subject.state) {
-            case States.SWITCHOFF: console.log('TV is off'); break
-            case States.SWITCHON: console.log('TV is on')
+            case States.SWITCHOFF:
+                console.log('TV is off');
+                break
+            case States.SWITCHON:
+                console.log('TV is on')
         }
     }
 }
